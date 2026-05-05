@@ -1,11 +1,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src/IsLabApp
+WORKDIR /src
 
-COPY . /src
+COPY IsLabApp/IsLabApp.csproj .
 # *.csproj ./
-RUN dotnet restore "IsLabApp/IsLabApp.csproj"
+RUN dotnet restore IsLabApp/IsLabApp.csproj
 #RUN dotnet build -c Release -o /app/publish
-RUN dotnet publish "IsLabApp/IsLabApp.csproj" -c Release -o /app/publish
+COPY . .
+RUN dotnet publish IsLabApp/IsLabApp.csproj -c Release -o /app/publish
 
 #COPY . ./
 #RUN dotnet publish -c  Release  -o /app
