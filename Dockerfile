@@ -3,9 +3,9 @@ WORKDIR /src
 
 COPY . .
 # *.csproj ./
-RUN dotnet restore 
+RUN dotnet restore "IsLabApp/IsLabApp.csproj"
 #RUN dotnet build -c Release -o /app/build
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet publish "IsLabApp/IsLabApp.csproj" -c Release -o /app/publish
 
 #COPY . ./
 #RUN dotnet publish -c  Release  -o /app
