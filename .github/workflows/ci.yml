@@ -63,7 +63,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./IsLabApp/Dockerfile
+#          file: ./IsLabApp/Dockerfile
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:latest
