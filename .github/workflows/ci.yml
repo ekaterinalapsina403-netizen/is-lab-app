@@ -29,7 +29,9 @@ jobs:
           dotnet-version: '8.0'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: |
+          dotnet restore
+          dotnet restore ../IsLabApp.Tests/IsLabApp.Tests.csproj
         working-directory: ./IsLabApp
  # IsLabApp.csproj
 #          dotnet restore IsLabApp.Tests/IsLabApp.Tests.csproj
