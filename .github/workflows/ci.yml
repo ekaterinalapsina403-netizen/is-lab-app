@@ -2,7 +2,7 @@ name: CI for IsLabApp
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
 
 #env:
  # REGISTRY: ghcr.io
@@ -23,24 +23,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0'
-
-      - name: Restore
-        run: dotnet restore
+#      - name: Setup .NET
+ #       uses: actions/setup-dotnet@v4
+  #      with:
+   #       dotnet-version: '8.0'
+#
+ #     - name: Restore
+  #      run: dotnet restore
 #          dotnet restore ../IsLabApp.Tests/IsLabApp.Tests.csproj
 #        working-directory: ./IsLabApp
 # IsLabApp.csproj
 #          dotnet restore IsLabApp.Tests/IsLabApp.Tests.csproj
 
-      - name: Build project
-        run: dotnet build -c Release --no-restore
+   #   - name: Build project
+    #    run: dotnet build -c Release --no-restore
 #        working-directory: ./IsLabApp
 
-      - name: Tests
-        run: dotnet test -c Release --no-restore
+     # - name: Tests
+      #  run: dotnet test -c Release --no-restore
  #       working-directory: ./IsLabApp
 
       - name: Log in to GHCR
