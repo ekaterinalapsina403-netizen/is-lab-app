@@ -62,7 +62,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./IsLabApp
+          context: .
+          file: ./IsLabApp/Dockerfile
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:latest
