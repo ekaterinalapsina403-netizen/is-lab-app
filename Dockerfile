@@ -4,11 +4,10 @@ WORKDIR /src
 COPY . .
 # *.csproj ./
 WORKDIR /src/IsLabApp
-RUN dotnet restore
-# IsLabApp/IsLabApp.csproj
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet restore IsLabApp/IsLabApp.csproj
+#RUN dotnet publish -c Release -o /app/publish
 #COPY . .
-#RUN dotnet publish IsLabApp/IsLabApp.csproj -c Release -o /app/publish
+RUN dotnet publish IsLabApp/IsLabApp.csproj -c Release -o /app/publish
 
 #COPY . ./
 #RUN dotnet publish -c  Release  -o /app
