@@ -28,21 +28,20 @@ jobs:
         with:
           dotnet-version: '8.0'
 
-      - name: Restore dependencies
-        run: |
-          dotnet restore
-          dotnet restore ../IsLabApp.Tests/IsLabApp.Tests.csproj
-        working-directory: ./IsLabApp
- # IsLabApp.csproj
+      - name: Restore
+        run: dotnet restore
+#          dotnet restore ../IsLabApp.Tests/IsLabApp.Tests.csproj
+#        working-directory: ./IsLabApp
+# IsLabApp.csproj
 #          dotnet restore IsLabApp.Tests/IsLabApp.Tests.csproj
 
       - name: Build project
         run: dotnet build -c Release --no-restore
-        working-directory: ./IsLabApp
+#        working-directory: ./IsLabApp
 
       - name: Tests
         run: dotnet test -c Release --no-restore
-        working-directory: ./IsLabApp
+ #       working-directory: ./IsLabApp
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -63,7 +62,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./IsLabApp
+          context: .
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:latest
