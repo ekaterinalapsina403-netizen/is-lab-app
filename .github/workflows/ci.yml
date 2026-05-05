@@ -17,6 +17,10 @@ jobs:
       contents: read
       packages: write
 
+  defaults:
+    run:
+      working-directory: ./IsLabApp
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,16 +31,15 @@ jobs:
           dotnet-version: '8.0'
 
       - name: Restore dependencies
-        run: |
-          dotnet restore IsLabApp.csproj
-          dotnet restore IsLabApp.Tests/IsLabApp.Tests.csproj
+        run: dotnet restore # IsLabApp.csproj
+#          dotnet restore IsLabApp.Tests/IsLabApp.Tests.csproj
 
       - name: Build project
-        run: dotnet build IsLabApp.csproj -c Release --no-restore
+        run: dotnet build -c Release # IsLabApp.csproj -c Release --no-restore
 
       - name: Run tests
-        run: dotnet test IsLabApp.Tests/IsLabApp.Tests.csproj -c Release --ni-restore
-        working-directory: ./IsLabApp
+        run: dotnet test # IsLabApp.Tests/IsLabApp.Tests.csproj -c Release --no-restore
+ #       working-directory: ./IsLabApp
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -57,7 +60,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./IsLabApp
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:latest
