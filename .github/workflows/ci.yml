@@ -2,9 +2,9 @@ name: CI for IsLabApp
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 env:
   REGISTRY: ghcr.io
@@ -39,7 +39,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ gihub.actor }}
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract Docker metadata (tags, labels)
@@ -56,5 +56,5 @@ jobs:
         with:
           context: ./IsLabApp/
           push: true
-          tags: ${{ id.meta.outputs.tags }}
-          labels: ${{ id.mets.output.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.mets.outputs.labels }}
